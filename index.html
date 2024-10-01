@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<style>
+html, body{
+	margin:0px;
+	padding:0px;
+	overflow: hidden;
+	-webkit-transform: hidden;
+}
+iframe{
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.fullwidth{
+	width: 100%;
+	height: 100%;
+	transform-origin: 0 0;
+	-webkit-transform: 0 0;
+}
+
+/*iframe {
+  width: 76.92% !important;
+  height: 76.92% !important;
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}*/
+</style>
+<script>
+	function setWidth(per){
+		let i = document.getElementById("ajframe");
+		i.classList.remove("fullwidth");
+		i.style.width = (100*(1/per))+"%";
+		i.style.height = (100*(1/per))+"%";
+		//let inverse = ((100-per)/100)+1;
+		//console.log(inverse);
+		i.style.webkitTransform = "scale("+per+")";
+		i.style.transform = "scale("+per+")";
+		i.style.webkitTransformOrigin = "0 0";
+		i.style.transformOrigin = "0 0";
+	}
+
+	document.addEventListener("DOMContentLoaded", (event) => {
+    let url = "https://docs.google.com/spreadsheets/d/1A3ZYd4CGGiQ0VEND6xa1FfPlnCKKiGCG5p7HbpxTU68/edit?gid=0&rm=minimal#gid=0"
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){	
+			console.log(screen.width);
+			setWidth((-0.001785714285714285*window.innerWidth)+3.5499999999999994);
+		}
+		if(true){
+			let i = document.getElementById("ajframe").src = url;
+		} else {
+			let p = document.createElement("h1");
+			p.textContent = window.innerWidth;//screen.width;
+			document.getElementsByTagName("body")[0].append(p);
+		}
+		/**/
+	});
+</script>
+	</head>
+	<body>
+		<iframe id="ajframe" class="fullwidth"></iframe>
+	</body>
+</html>
